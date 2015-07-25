@@ -7,3 +7,11 @@
 .add-opacity {
   opacity: 1;
 }
+
+.inline-block {
+  display: inline-block;
+}
+
+.push-up-17 {
+    bottom: 17px;
+}
