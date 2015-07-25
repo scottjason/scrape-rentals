@@ -44,5 +44,8 @@
   @media(max-width: 400px) {
     .listing {
       width: 280px;
+      left: 0;
+      right: 0;
+      margin: center;
     }
   }
