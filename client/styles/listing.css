@@ -46,7 +46,6 @@
       width: 280px;
       left: 0;
       right: 0;
-      margin: center;
-      position: absolute;
+      margin: auto;
     }
   }
