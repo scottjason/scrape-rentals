@@ -2,15 +2,14 @@
 <html>
 
 <head>
-  <title></title>
+  <title>Bed And Board</title>
+  <base href="/"></base>
   <link href='https://fonts.googleapis.com/css?family=Roboto:500,300,400' rel='stylesheet' type='text/css'>
   <link rel='stylesheet' href='/styles/landing.css' />
   <link rel='stylesheet' href='/styles/utility.css' />
   <link rel='stylesheet' href='/styles/lib/date-picker.min.css' />
   <link rel='stylesheet' href='/styles/lib/structure.min.css' />
-
 </head>
-<base href="/"></base>
 
 <body ng-app='BedAndBoard'>
   <div ui-view></div>
@@ -23,9 +22,9 @@
   <script src='app.js'></script>
   <script src='app.config.js'></script>
   <script src='scripts/controllers/landing.js'></script>
+  <script src='scripts/services/ConstantService.js'></script>
   <script src='scripts/services/GoogleMaps.js'></script>
   <script src='scripts/services/StateService.js'></script>
-  <script src='scripts/services/ConstantService.js'></script>
   <script src='scripts/directives/ngDatePicker.js'></script>
 </body>
 
