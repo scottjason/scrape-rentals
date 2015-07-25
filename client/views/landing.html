@@ -1,0 +1,14 @@
+
+<div ng-class='{ "no-opacity" : (hideOverlay) }' class='landing-overlay' ng-init='landingCtrl.initialize();'></div>
+<div class='center-body'>
+  <div class='logo-top'></div>
+  <form>
+  <input id="autocomplete" ng-model='search.location' class='search-input' name='location' placeholder='location'>
+  <div ng-date-picker>
+    <input  id="checkin" type='text' ng-model='search.checkin' class='search-input inline' name='checkin' placeholder='checkin'>
+    <input id="checkout" type='text' ng-model='search.checkout' class='search-input inline' name='checkout' placeholder='checkout'>
+  </div ng-date-picker>
+    <div ng-click='landingCtrl.onSubmit();' class='submit-search-btn'><p>submit</p></div>
+  </form>
+</div>
+
