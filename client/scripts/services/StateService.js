@@ -5,11 +5,8 @@ angular.module('BedAndBoard')
 
     var data = {
       'SearchForm': {
-        'isValidLocation': false,
-        'isCheckIn': false,
-        'isCheckOut': false,
-        'checkInDate': null,
-        'checkOutDate': null
+        'isValid': false,
+        'requestOpts': null
       }
     };
 

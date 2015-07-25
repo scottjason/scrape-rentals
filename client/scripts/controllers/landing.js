@@ -3,64 +3,76 @@
 angular.module('BedAndBoard')
   .controller('LandingCtrl', LandingCtrl);
 
-function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, ConstantService, StateService) {
+function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataService, RequestApi, StateService) {
 
   var autoComplete;
   var ctrl = this;
 
   $scope.search = {};
 
+  var stateMap = DataService.generateMap();
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   this.initialize = function() {
-      autoComplete = GoogleMaps.addEventListener('autocomplete', ctrl.onAutoComplete)
+    autoComplete = GoogleMaps.addEventListener('autocomplete', ctrl.onAutoComplete)
     $timeout(function() {
       $scope.showBackground = true;
-    }, 500);
+    }, 300);
   };
 
 
-  // var url = "https://www.airbnb.com/s/Laguna-Niguel--CA--United-States?guests=&checkin=07%2F31%2F2015&checkout=08%2F18%2F2015&ss_id=k11m706a&source=bb";
-
   this.onSubmit = function() {
-    var isValidLocation = StateService.data['SearchForm'].isValidLocation;
-    var isValidCheckIn = StateService.data['SearchForm'].checkInDate;
-    var isValidCheckOut = StateService.data['SearchForm'].checkOutDate;
-    if (isValidLocation && isValidCheckIn && isValidCheckOut) {
-      $scope.search.checkIn = StateService.data['SearchForm'].checkInDate;
-      $scope.search.checkOut = StateService.data['SearchForm'].checkOutDate;
-      console.log('make request, all fields valid', $scope.search);
-    } else if (!isValidLocation) {
-      $timeout(function() {
-        $scope.search.location = '';
-        console.log('invalid location')
-      });
-    } else {
-      $timeout(function() {
-        console.log('invalid checkin or checkout');
-      });
+    var isValid = StateService.data['SearchForm'].isValid;
+    if (isValid) {
+      var requestOpts = StateService.data['SearchForm'].requestOpts;
+      StateService.data['SearchForm'].isValid = false;
+      StateService.data['SearchForm'].requestOpts = false;
+
+      ctrl.makeRequest(requestOpts);
     }
   };
 
 
   ctrl.onAutoComplete = function() {
-
+    var address = autoComplete.getPlace();
     var obj = {};
-    obj.place = autoComplete.getPlace();
-    obj.componentForm = ConstantService.generateOpts('component-form');
-
-    var isValid = GoogleMaps.isValid(obj, function(isValid, location) {
-      if (isValid && typeof location === 'object' && Array.isArray(location)) {
-        $timeout(function() {
-          $scope.search.location = location[0].formatted_address;
-          StateService.data['SearchForm'].isValidLocation = true;
-        });
-      } else {
-        $timeout(function() {
-          $scope.search.location = '';
-          StateService.data['SearchForm'].isValidLocation = false;
-        });
+    var arr = (address.formatted_address).split(',');
+    arr.forEach(function(elem, index) {
+      if (index === 0) {
+        obj.city = elem.trim();
+      } else if (index === 1) {
+        obj.state = elem.trim();
       }
     });
+    obj.url = 'http://www.rentals.com/';
+    var arr = obj.city.split(' ');
+    if (arr.length > 1) {
+      console.log('greater than one')
+      obj.city = '';
+      arr.forEach(function(elem, index) {
+        if (index !== arr.length - 1) {
+          obj.city += (elem + '-');
+        } else {
+          obj.city += elem;
+        }
+      });
+    }
+    obj.url += stateMap[obj.state] + '/' + obj.city + '/'
+    StateService.data['SearchForm'].isValid = true;
+    StateService.data['SearchForm'].requestOpts = obj;
+  }
+
+
+  ctrl.makeRequest = function(requestOpts) {
+      RequestApi.getAll(requestOpts).then(function(response) {
+        console.log('data', response);
+      }, function(err) {
+        console.err('err', err);
+      });
   };
 
-  LandingCtrl.$inject['$scope', '$rootScope', '$state', '$timeout', 'GoogleMaps', 'ConstantService', 'StateService'];
+  LandingCtrl.$inject['$scope', '$rootScope', '$state', '$timeout', 'GoogleMaps', 'DataService', 'RequestApi', 'StateService'];
 }
