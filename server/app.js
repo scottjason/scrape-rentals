@@ -55,8 +55,10 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(3000, function() {
-  console.log('server listeninging on this');
+var port = process.env.PORT || 300;
+
+app.listen(port, function() {
+  console.log('server listeninging on', port);
 });
 
 
