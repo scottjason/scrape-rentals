@@ -59,37 +59,7 @@ angular.module('BedAndBoard')
       };
     }
 
-    function generateOpts(type, address) {
-      var opts = {};
-      if (type === 'request-opts') {
-        var _this = this;
-        var arr = (address.formatted_address).split(',');
-        arr.forEach(function(elem, index) {
-          if (index === 0) {
-            opts.city = elem.trim();
-          } else if (index === 1) {
-            opts.state = elem.trim();
-          }
-        });
-        opts.url = 'http://www.rentals.com/';
-        var arr = opts.city.split(' ');
-        if (arr.length > 1) {
-          opts.city = '';
-          arr.forEach(function(elem, index) {
-            if (index !== arr.length - 1) {
-              opts.city += (elem + '-');
-            } else {
-              opts.city += elem;
-            }
-          });
-        }
-        opts.url += _this.generateMap[opts.state] + '/' + opts.city + '/'
-      }
-      return opts;
-    }
-
     return ({
-      generateOpts: generateOpts,
       generateMap: generateMap
     });
     ng.$inject('$timeout', 'StateService');

@@ -8,13 +8,7 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
   var autoComplete;
   var ctrl = this;
 
-  $scope.search = {};
-
   var stateMap = DataService.generateMap();
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
 
   this.initialize = function() {
     autoComplete = GoogleMaps.addEventListener('autocomplete', ctrl.onAutoComplete)
@@ -29,8 +23,7 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
     if (isValid) {
       var requestOpts = StateService.data['SearchForm'].requestOpts;
       StateService.data['SearchForm'].isValid = false;
-      StateService.data['SearchForm'].requestOpts = false;
-
+      StateService.data['SearchForm'].requestOpts = null;
       ctrl.makeRequest(requestOpts);
     }
   };
@@ -50,7 +43,6 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
     obj.url = 'http://www.rentals.com/';
     var arr = obj.city.split(' ');
     if (arr.length > 1) {
-      console.log('greater than one')
       obj.city = '';
       arr.forEach(function(elem, index) {
         if (index !== arr.length - 1) {
@@ -67,11 +59,11 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
 
 
   ctrl.makeRequest = function(requestOpts) {
-      RequestApi.getAll(requestOpts).then(function(response) {
-        console.log('data', response);
-      }, function(err) {
-        console.err('err', err);
-      });
+    RequestApi.getAll(requestOpts).then(function(response) {
+      console.log('data', response);
+    }, function(err) {
+      console.err('err', err);
+    });
   };
 
   LandingCtrl.$inject['$scope', '$rootScope', '$state', '$timeout', 'GoogleMaps', 'DataService', 'RequestApi', 'StateService'];
