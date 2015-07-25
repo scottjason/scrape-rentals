@@ -1,0 +1,27 @@
+  .listings-container {
+    background-color: green;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100%;
+    margin: auto;
+    z-index: 3;
+    text-align: center;
+  }
+ 
+  .listing {
+    width: 380px;
+    background-color: blue;
+    height: 200px;
+    position: relative;
+    display: inline-block;
+    margin: 6px;
+  }
+
+  @media(max-width: 400px) {
+    .listing {
+      width: 280px;
+    }
+  }

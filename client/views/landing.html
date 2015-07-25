@@ -1,7 +1,7 @@
 <div ng-init='landingCtrl.initialize();'>
-    <div ng-class='{ "add-opacity" : showBackground }' class='landing-overlay'></div>
-    <div ng-class='{ "add-opacity" : showBackground }' class='background-img'></div>
-  <div class='center-body'>
+  <div ng-class='{ "add-opacity" : showBackground }' class='landing-overlay'></div>
+  <div ng-class='{ "add-opacity" : showBackground }' class='background-img'></div>
+  <div ng-hide='showListings' class='center-body'>
     <div class='logo-top'>
       <p>Bed <span>&</span> Board</p>
     </div>
@@ -12,4 +12,13 @@
       </div>
     </form>
   </div>
+  <div ng-show='showListings'>
+    <div class='listings-container'>
+      <div class='listing' ng-repeat='listing in listings'>
+        <!-- {{listing.imageUrl}} -->
+      </div>
+    </div>
+  </div>
+    <!-- <div class='listings-container'></div> -->
+
 </div>

@@ -60,7 +60,13 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
 
   ctrl.makeRequest = function(requestOpts) {
     RequestApi.getAll(requestOpts).then(function(response) {
-      console.log('data', response);
+      if (typeof response.data === 'object' && Array.isArray(response.data)) {
+        DataService.generateListings(response.data, function(listings){
+          $scope.listings = listings;
+          $scope.showListings = true;
+          console.log('listings', listings);
+        });
+      };
     }, function(err) {
       console.err('err', err);
     });

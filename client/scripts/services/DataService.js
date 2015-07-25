@@ -1,5 +1,5 @@
 angular.module('BedAndBoard')
-  .service('DataService', function($timeout, StateService) {
+  .service('DataService', function() {
 
     'use strict'
 
@@ -59,8 +59,13 @@ angular.module('BedAndBoard')
       };
     }
 
+    function generateListings(arr, cb) {
+      console.log('generateListings', arr);
+      cb(arr);
+    };
+
     return ({
-      generateMap: generateMap
+      generateMap: generateMap,
+      generateListings: generateListings
     });
-    ng.$inject('$timeout', 'StateService');
   });
