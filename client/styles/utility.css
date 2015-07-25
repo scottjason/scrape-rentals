@@ -3,3 +3,7 @@
 .no-opacity {
   opacity: 0;
 }
+
+.add-opacity {
+  opacity: 1;
+}

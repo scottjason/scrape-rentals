@@ -4,6 +4,7 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+
 /* Landing Page Overlay, Fixed */
 
 .landing-overlay {
@@ -12,12 +13,33 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: black;
-  -webkit-transition: opacity 1.4s ease-in-out;
-  -moz-transition: opacity 1.4s ease-in-out;
-  -ms-transition: opacity 1.4s ease-in-out;
-  -o-transition: opacity 1.4s ease-in-out;
-  transition: opacity 1.4s ease-in-out;
+  background-color: rgba(0, 0, 0, .85);
+  z-index: 2;
+  opacity: 0;
+  -webkit-transition: opacity 1.0s ease-in-out;
+  -moz-transition: opacity 1.0s ease-in-out;
+  -ms-transition: opacity 1.0s ease-in-out;
+  -o-transition: opacity 1.0s ease-in-out;
+  transition: opacity 1.0s ease-in-out;
+}
+
+
+/* Background Image, Fixed */
+
+.background-img {
+  background: url(../assets/img/bg-image.jpg);
+  background-size: cover;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  -webkit-transition: opacity 1.0s ease-in-out;
+  -moz-transition: opacity 1.0s ease-in-out;
+  -ms-transition: opacity 1.0s ease-in-out;
+  -o-transition: opacity 1.0s ease-in-out;
+  transition: opacity 1.0s ease-in-out;
 }
 
 
@@ -32,6 +54,7 @@ body {
   width: 400px;
   height: 278px;
   margin: auto;
+  z-index: 3;
 }
 
 
@@ -41,12 +64,23 @@ body {
   position: relative;
   left: 0;
   right: 0;
-  top: 0;
+  top: 20px;
   margin: auto;
-  width: 100px;
-  height: 100px;
-  background-image: url('../assets/img/air-bnb.png');
-  background-size: cover;
+  width: 250px;
+  height: 29px;
+  color: white;
+  font-size: 26px;
+  text-align: center;
+}
+
+
+/* Logo Top Child | & Copy, Relative */
+
+.logo-top > p > span {
+  color: #fff;
+  font-size: 16px;
+  position: relative;
+  bottom: 3px;
 }
 
 
@@ -118,7 +152,7 @@ input:focus {
   position: relative;
   width: 100px;
   height: 20px;
-  border: 1px solid white;
+  border: 1px solid #ff5a60;
   border-radius: 35px;
   left: 0;
   right: 0;

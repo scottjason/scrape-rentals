@@ -11,10 +11,10 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, ConstantS
   $scope.search = {};
 
   this.initialize = function() {
+      autoComplete = GoogleMaps.addEventListener('autocomplete', ctrl.onAutoComplete)
     $timeout(function() {
-      $scope.hideOverlay = true;
-    });
-    autoComplete = GoogleMaps.addEventListener('autocomplete', ctrl.onAutoComplete)
+      $scope.showBackground = true;
+    }, 500);
   };
 
 
