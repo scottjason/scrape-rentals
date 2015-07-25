@@ -1,4 +1,4 @@
-angular.module('AirBnb')
+angular.module('BedAndBoard')
   .service('StateService', function() {
 
     'use strict'

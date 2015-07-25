@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('AirBnb')
+angular.module('BedAndBoard')
   .controller('LandingCtrl', LandingCtrl);
 
 function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, StateService) {

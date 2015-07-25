@@ -1,4 +1,4 @@
-angular.module('AirBnb')
+angular.module('BedAndBoard')
   .directive('ngDatePicker', function(ConstantService, StateService) {
     return {
       link: function(scope, element, attrs) {

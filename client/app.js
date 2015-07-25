@@ -1,6 +1,6 @@
 'use strict';
 
 angular
-  .module('AirBnb', [
+  .module('BedAndBoard', [
     'ui.router'
   ]);
