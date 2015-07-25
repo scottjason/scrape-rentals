@@ -16,7 +16,6 @@ angular.module('BedAndBoard')
       } else if (type === 'date-picker') {
         var opts = {
           onSelect: function(date) {
-
             var isCheckIn = StateService.data['SearchForm'].isCheckIn;
             if (isCheckIn) {
               StateService.data['SearchForm'].isCheckIn = false;

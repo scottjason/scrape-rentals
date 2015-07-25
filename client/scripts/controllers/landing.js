@@ -3,7 +3,7 @@
 angular.module('BedAndBoard')
   .controller('LandingCtrl', LandingCtrl);
 
-function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, StateService) {
+function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, ConstantService, StateService) {
 
   var autoComplete;
   var ctrl = this;
@@ -42,8 +42,12 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, StateServ
 
 
   ctrl.onAutoComplete = function() {
-    var selectedLocation = autoComplete.getPlace();
-    var isValid = GoogleMaps.isValid(selectedLocation, function(isValid, location) {
+
+    var obj = {};
+    obj.place = autoComplete.getPlace();
+    obj.componentForm = ConstantService.generateOpts('component-form');
+
+    var isValid = GoogleMaps.isValid(obj, function(isValid, location) {
       if (isValid && typeof location === 'object' && Array.isArray(location)) {
         $timeout(function() {
           $scope.search.location = location[0].formatted_address;
@@ -58,5 +62,5 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, StateServ
     });
   };
 
-  LandingCtrl.$inject['$scope', '$rootScope', '$state', '$timeout', 'GoogleMaps', 'StateService'];
+  LandingCtrl.$inject['$scope', '$rootScope', '$state', '$timeout', 'GoogleMaps', 'ConstantService', 'StateService'];
 }

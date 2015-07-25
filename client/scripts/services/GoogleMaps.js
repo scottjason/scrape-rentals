@@ -4,14 +4,6 @@ angular.module('BedAndBoard')
     'use strict'
 
     var address = '';
-    var componentForm = {
-      street_number: 'short_name',
-      route: 'long_name',
-      locality: 'long_name',
-      administrative_area_level_1: 'short_name',
-      country: 'long_name',
-      postal_code: 'short_name'
-    };
 
     function addEventListener(type, cb) {
       var autocomplete = new google.maps.places.Autocomplete(
@@ -24,15 +16,15 @@ angular.module('BedAndBoard')
       return autocomplete;
     }
 
-    function isValid(place, cb) {
-      if (!place.address_components) {
+    function isValid(obj, cb) {
+      if (!obj.place.address_components) {
         return cb(null);
       }
 
-      for (var i = 0; i < place.address_components.length; i++) {
-        var addressType = place.address_components[i].types[0];
-        if (componentForm[addressType]) {
-          var val = place.address_components[i][componentForm[addressType]];
+      for (var i = 0; i < obj.place.address_components.length; i++) {
+        var addressType = obj.place.address_components[i].types[0];
+        if (obj.componentForm[addressType]) {
+          var val = obj.place.address_components[i][obj.componentForm[addressType]];
           address += val + ' ';
         }
       }
