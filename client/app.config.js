@@ -13,6 +13,5 @@ angular.module('BedAndBoard')
 
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
-    $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
   });

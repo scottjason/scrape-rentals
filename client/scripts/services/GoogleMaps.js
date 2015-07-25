@@ -1,10 +1,17 @@
-angular.module('AirBnb')
-  .service('GoogleMaps', function($timeout, ConstantService) {
+angular.module('BedAndBoard')
+  .service('GoogleMaps', function($timeout, StateService) {
 
     'use strict'
 
     var address = '';
-    var componentForm = ConstantService.generateOpts('component-form');
+    var componentForm = {
+      street_number: 'short_name',
+      route: 'long_name',
+      locality: 'long_name',
+      administrative_area_level_1: 'short_name',
+      country: 'long_name',
+      postal_code: 'short_name'
+    };
 
     function addEventListener(type, cb) {
       var autocomplete = new google.maps.places.Autocomplete(
@@ -48,5 +55,5 @@ angular.module('AirBnb')
       addEventListener: addEventListener,
       isValid: isValid
     });
-    ng.$inject('$timeout', 'ConstantService');
+    ng.$inject('$timeout');
   });
