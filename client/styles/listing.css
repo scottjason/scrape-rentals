@@ -43,7 +43,6 @@
   
   @media(max-width: 400px) {
     .listing {
-      position: absolute;
       width: 280px;
       left: 0;
       right: 0;
