@@ -1,0 +1,7 @@
+  /* Desktop Media Queries  */
+
+  @media (min-device-width: 400px) {
+    .listing {
+      width: 350px;
+    }
+  }

@@ -7,10 +7,14 @@ var compression = require('compression');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-
 var config = require('./config');
 
 var app = express();
+var port = process.env.PORT || 3000;
+
+var isProduction = (process.NODE_ENV === 'production');
+
+isProduction ? app.set('env', 'production') : app.set('env', 'development');
 
 app.set('views', config.root + '/server/views');
 app.engine('html', require('ejs').renderFile);
@@ -55,10 +59,9 @@ app.use(function(err, req, res, next) {
   });
 });
 
-var port = process.env.PORT || 3000;
 
 app.listen(port, function() {
-  console.log('server listeninging on', port);
+  console.log('server listeninging on port', port, 'in', app.get('env') + ' mode');
 });
 
 
