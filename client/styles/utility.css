@@ -30,6 +30,9 @@
     .listing-img {
       width: 200px;
     }
+    .background-img {
+      background: url(../assets/img/bg-image-mobile.jpg);
+    }
   }
   
   @media (min-device-width: 400px) {
