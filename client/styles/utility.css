@@ -30,9 +30,6 @@
     .listing-img {
       width: 200px;
     }
-    .background-img {
-      display: none;
-    }
   }
   
   @media (min-device-width: 400px) {
