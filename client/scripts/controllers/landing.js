@@ -14,6 +14,7 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
     autoComplete = GoogleMaps.addEventListener('autocomplete', ctrl.onAutoComplete)
     $timeout(function() {
       $scope.showBackground = true;
+      window.scrollTo(0, 0);
       $timeout(function() {
         $scope.bgBlack = true;
       }, 1500);
@@ -33,6 +34,7 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
 
 
   ctrl.onAutoComplete = function() {
+    window.scrollTo(0, 0);
     var address = autoComplete.getPlace();
     var obj = {};
     var arr = (address.formatted_address).split(',');
