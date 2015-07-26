@@ -15,6 +15,9 @@ exports.scrape = function(req, res, next) {
       _.each(container, function(obj) {
         var listing = {};
         listing.title = $(obj).children('.column1').find('a').attr('title');
+        if (listing.title.length > 28) {
+          listing.title = listing.title.slice(0, 25) + '...';
+        }
         listing.href = $(obj).children('.column1').find('a').attr('href');
         listing.imageLink = $(obj).children('.column1').children('.listing_photo').find('img').attr('data-original');
         listing.location = $(obj).children('.listing_details').children().find('h5').text();
