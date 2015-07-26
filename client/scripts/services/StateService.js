@@ -6,7 +6,8 @@ angular.module('ScrapeRentals')
     var data = {
       'SearchForm': {
         'isValid': false,
-        'requestOpts': null
+        'requestOpts': null,
+        'isReload': false
       }
     };
 

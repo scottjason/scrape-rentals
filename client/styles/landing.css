@@ -115,25 +115,6 @@ input:focus {
 }
 
 
-/* Form Child | Form Content Inline, Relative */
-
-.search-input.inline,
-.search-input.inline:hover,
-.search-input.inline:active {
-  position: relative;
-  display: inline-block;
-  width: 137px;
-  height: 20px;
-  border-radius: 35px;
-  left: 0;
-  right: 0;
-  top: 30px;
-  margin: 0 0 10px 5px;
-  font-size: 18px;
-  padding: 10px;
-  border: 1px solid rgba(0, 0, 0, .5);
-  color: rgba(0, 0, 0, .6);
-}
 
 
 /* Form Child | Form Submit Button, Relative */

@@ -4,23 +4,32 @@
   <div ng-class='{ "add-opacity" : showBackground }' class='background-img'></div>
   <div ng-hide='showListings' class='center-body'>
     <div class='logo-top'>
-    <p> scrape rentals</p>
+      <p>scrape rentals</p>
     </div>
     <form>
-      <input id="autocomplete" class='search-input' name='location' placeholder='location'>
-      <div ng-click='landingCtrl.onSubmit();' class='submit-search-btn'>
+      <input id="autocomplete" ng-model='searchForm' class='search-input' name='location' placeholder='search by city or state'>
+      <div ng-click='landingCtrl.onSubmit(null);' class='submit-search-btn'>
         <p>submit</p>
       </div>
     </form>
   </div>
   <div ng-show='showListings'>
+    <div class='navbar'>
+      <div class='logo-top navbar'>
+        <p>scrape rentals</p>
+        <div class='nav-line'></div>
+        <div ng-click='landingCtrl.onSubmit(true);' class='submit-search-btn navbar'>
+          <p class='navbar'>new search</p>
+        </div>
+      </div>
+    </div>
     <div class='listings-container'>
       <div class='listing' ng-repeat='listing in listings'>
-      <img class='listing-img' src= "{{ listing.imageLink }}" alt="listing-image">
-      <p class='listing-copy title'>{{listing.title}}</p>
-      <p class='listing-copy'>{{listing.location}}</p>
-      <p class='listing-copy inline-block push-up-17'>{{listing.size}} |</p>
-      <p class='listing-copy inline-block push-up-17'>{{listing.price}}</p>
+        <img class='listing-img' src="{{ listing.imageLink }}" alt="listing-image">
+        <p class='listing-copy title'>{{listing.title}}</p>
+        <p class='listing-copy'>{{listing.location}}</p>
+        <p class='listing-copy inline-block push-up-17'>{{listing.size}} |</p>
+        <p class='listing-copy inline-block push-up-17'>{{listing.price}}</p>
       </div>
     </div>
   </div>

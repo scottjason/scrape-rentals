@@ -4,7 +4,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: 0;
+    top: 90px;
     height: 100%;
     margin: auto;
     z-index: 3;
@@ -35,9 +35,8 @@
     font-size: 12px;
     position: relative;
   }
-
-  .title {
-  	font-size: 14px;
-  	color: #ff5a60;
-  }
   
+  .title {
+    font-size: 14px;
+    color: #ff5a60;
+  }

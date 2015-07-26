@@ -11,27 +11,40 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
   var stateMap = DataService.generateMap();
 
   this.initialize = function() {
-    autoComplete = GoogleMaps.addEventListener('autocomplete', ctrl.onAutoComplete)
-    $timeout(function() {
-      $scope.showBackground = true;
-      window.scrollTo(0, 0);
+    var isReload = StateService.data['SearchForm'].isReload;
+    if (!isReload) {
+      autoComplete = GoogleMaps.addEventListener('autocomplete', ctrl.onAutoComplete)
       $timeout(function() {
-        $scope.bgBlack = true;
-      }, 1500);
-    }, 300);
-  };
-
-
-  this.onSubmit = function() {
-    var isValid = StateService.data['SearchForm'].isValid;
-    if (isValid) {
-      var requestOpts = StateService.data['SearchForm'].requestOpts;
-      StateService.data['SearchForm'].isValid = false;
-      StateService.data['SearchForm'].requestOpts = null;
-      ctrl.makeRequest(requestOpts);
+        $scope.showBackground = true;
+        window.scrollTo(0, 0);
+        $timeout(function() {
+          $scope.bgBlack = true;
+        }, 1500);
+      }, 300);
+    } else {
+      StateService.data['SearchForm'].isReload = false;
+      autoComplete = GoogleMaps.addEventListener('autocomplete', ctrl.onAutoComplete);
+      $scope.showBackground = true;
+      $scope.bgBlack = true;
+      $scope.showListings = false;
+      window.scrollTo(0, 0);
     }
   };
 
+  this.onSubmit = function(isReload) {
+    if (!isReload) {
+      var isValid = StateService.data['SearchForm'].isValid;
+      if (isValid) {
+        var requestOpts = StateService.data['SearchForm'].requestOpts;
+        StateService.data['SearchForm'].isValid = false;
+        StateService.data['SearchForm'].requestOpts = null;
+        ctrl.makeRequest(requestOpts);
+      }
+    } else {
+      StateService.data['SearchForm'].isReload = true;
+      $state.go($state.current, {}, { reload: true });
+    }
+  };
 
   ctrl.onAutoComplete = function() {
     var address = autoComplete.getPlace();
@@ -59,13 +72,13 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
     obj.url += stateMap[obj.state] + '/' + obj.city + '/'
     StateService.data['SearchForm'].isValid = true;
     StateService.data['SearchForm'].requestOpts = obj;
-  }
-
+  };
 
   ctrl.makeRequest = function(requestOpts) {
     RequestApi.getAll(requestOpts).then(function(response) {
       if (typeof response.data === 'object' && Array.isArray(response.data)) {
         DataService.generateListings(response.data, function(listings) {
+          $scope.searchForm = '';
           $scope.listings = listings;
           $scope.showListings = true;
           console.log('listings', listings);
