@@ -1,4 +1,4 @@
-angular.module('BedAndBoard')
+angular.module('ScrapeRentals')
   .service('StateService', function() {
 
     'use strict'

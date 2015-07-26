@@ -1,6 +1,6 @@
 'use strict';
 
 angular
-  .module('BedAndBoard', [
+  .module('ScrapeRentals', [
     'ui.router'
   ]);

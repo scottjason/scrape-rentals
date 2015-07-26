@@ -1,4 +1,4 @@
-angular.module('BedAndBoard')
+angular.module('ScrapeRentals')
   .service('GoogleMaps', function($timeout, StateService) {
 
     'use strict'
@@ -11,6 +11,7 @@ angular.module('BedAndBoard')
           types: ['(cities)']
         });
       google.maps.event.addListener(autocomplete, 'place_changed', function(e) {
+        window.scrollTo(0, 0);
         cb();
       });
       return autocomplete;

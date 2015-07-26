@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'evolutionevolution';
+  src: url('../assets/fonts/evolution_true_type_font_by_paulw-webfont.eot');
+  src: url('../assets/fonts/evolution_true_type_font_by_paulw-webfont.eot?#iefix') format('embedded-opentype'), url('../assets/fonts/evolution_true_type_font_by_paulw-webfont.woff2') format('woff2'), url('../assets/fonts/evolution_true_type_font_by_paulw-webfont.woff') format('woff'), url('../assets/fonts/evolution_true_type_font_by_paulw-webfont.ttf') format('truetype'), url('../assets/fonts/evolution_true_type_font_by_paulw-webfont.svg#evolutionevolution') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   overflow-x: hidden;
   font-family: 'Roboto', sans-serif;
@@ -17,6 +25,7 @@ body {
 .global-bg.bg-black {
   background-color: black;
 }
+
 
 /* Landing Page Overlay, Fixed */
 
@@ -77,12 +86,13 @@ body {
   position: relative;
   left: 0;
   right: 0;
-  top: 20px;
+  top: 16px;
   margin: auto;
   width: 250px;
   height: 29px;
-  color: white;
-  font-size: 26px;
+  color: #ff5a60;
+  font-family: 'evolutionevolution';
+  font-size: 32px;
   text-align: center;
 }
 
@@ -90,9 +100,11 @@ body {
 /* Logo Top Child | & Copy, Relative */
 
 .logo-top > p > span {
-  color: #fff;
+  /*color: #fff;*/
+  color: #ff5a60;
   font-size: 16px;
   position: relative;
+  font-family: 'evolutionevolution';
   bottom: 3px;
 }
 

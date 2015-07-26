@@ -1,5 +1,5 @@
-angular.module('BedAndBoard')
-  .factory('RequestApi', function($http) {
+angular.module('ScrapeRentals')
+  .service('RequestApi', function($http) {
 
     'use strict'
 

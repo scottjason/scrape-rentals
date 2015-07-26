@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('BedAndBoard')
+angular.module('ScrapeRentals')
   .controller('LandingCtrl', LandingCtrl);
 
 function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataService, RequestApi, StateService) {
@@ -34,7 +34,6 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
 
 
   ctrl.onAutoComplete = function() {
-    window.scrollTo(0, 0);
     var address = autoComplete.getPlace();
     var obj = {};
     var arr = (address.formatted_address).split(',');

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('BedAndBoard')
+angular.module('ScrapeRentals')
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
 
