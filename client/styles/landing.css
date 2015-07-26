@@ -1,9 +1,21 @@
 body {
-  background: #ff5a60;
   overflow-x: hidden;
   font-family: 'Roboto', sans-serif;
 }
 
+.global-bg {
+  background-color: #ff5a60;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  margin: auto;
+}
+
+.global-bg.bg-black {
+  background-color: black;
+}
 
 /* Landing Page Overlay, Fixed */
 

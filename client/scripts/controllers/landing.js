@@ -14,6 +14,9 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
     autoComplete = GoogleMaps.addEventListener('autocomplete', ctrl.onAutoComplete)
     $timeout(function() {
       $scope.showBackground = true;
+      $timeout(function() {
+        $scope.bgBlack = true;
+      }, 1500);
     }, 300);
   };
 
@@ -61,7 +64,7 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
   ctrl.makeRequest = function(requestOpts) {
     RequestApi.getAll(requestOpts).then(function(response) {
       if (typeof response.data === 'object' && Array.isArray(response.data)) {
-        DataService.generateListings(response.data, function(listings){
+        DataService.generateListings(response.data, function(listings) {
           $scope.listings = listings;
           $scope.showListings = true;
           console.log('listings', listings);

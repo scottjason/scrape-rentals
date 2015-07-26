@@ -15,7 +15,6 @@
   .push-up-17 {
     bottom: 17px;
   }
-  
   /* Mobile Portrait & Landscape  */
   
   @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
@@ -25,10 +24,16 @@
     .search-input,
     .search-input:hover,
     .search-input:active,
-    .listing  {
+    .listing {
       width: 230px;
     }
     .listing-img {
       width: 200px;
+    }
+  }
+  
+  @media (min-device-width: 400px) {
+    .listing {
+      width: 350px;
     }
   }
