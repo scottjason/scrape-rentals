@@ -36,7 +36,7 @@
 
 .submit-search-btn > p.navbar {
   color: #5AFFF9;
-  position: relative;
+  position: absolute;
   text-align: center;
   top: 2px;
   bottom: 0;

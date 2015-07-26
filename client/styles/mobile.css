@@ -1,22 +1,33 @@
+/* Mobile Portrait & Landscape  */
 
-  /* Mobile Portrait & Landscape  */
-  
-  @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-    .center-body {
-      width: 280px;
-    }
-    .search-input,
-    .search-input:hover,
-    .search-input:active,
-    .listing {
-      width: 230px;
-    }
-    .listing-img {
-      width: 200px;
-    }
-    .logo-top {
-      font-size: 24px;
-      top: 24px;
-    }
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  .center-body {
+    width: 280px;
   }
-  
+  .search-input,
+  .search-input:hover,
+  .search-input:active,
+  .listing {
+    width: 230px;
+  }
+  .listing-img {
+    width: 200px;
+  }
+  .logo-top {
+    font-size: 24px;
+    top: 24px;
+  }
+  .nav-line {
+    width: 220px;
+    top: -48px;
+  }
+  .submit-search-btn.navbar,
+  .submit-search-btn.navbar:hover,
+  .submit-search-btn.navbar:active {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+  }
+}
