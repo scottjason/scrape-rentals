@@ -1,33 +1,31 @@
   /* Utility Classes */
-
+  
   .no-opacity {
     opacity: 0;
   }
-
+  
   .add-opacity {
     opacity: 1;
   }
-
+  
   .inline-block {
     display: inline-block;
   }
-
+  
   .push-up-17 {
     bottom: 17px;
   }
-
-  /* iPhone 5 & 5s, Landscape & Portrait */
-
+  
+  /* Mobile Portrait & Landscape  */
+  
   @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
     .center-body {
       width: 280px;
     }
     .search-input,
     .search-input:hover,
-    .search-input:active {
-      width: 230px;
-    }
-    .listing {
+    .search-input:active,
+    .listing  {
       width: 230px;
     }
     .listing-img {
