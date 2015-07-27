@@ -1,0 +1,371 @@
+  /* Desktop Media Queries  */
+
+  @media (min-device-width: 400px) {
+    .listing {
+      width: 350px;
+    }
+  }
+
+
+@font-face {
+  font-family: 'evolutionevolution';
+  src: url('../assets/fonts/evolution_true_type_font_by_paulw-webfont.eot');
+  src: url('../assets/fonts/evolution_true_type_font_by_paulw-webfont.eot?#iefix') format('embedded-opentype'), url('../assets/fonts/evolution_true_type_font_by_paulw-webfont.woff2') format('woff2'), url('../assets/fonts/evolution_true_type_font_by_paulw-webfont.woff') format('woff'), url('../assets/fonts/evolution_true_type_font_by_paulw-webfont.ttf') format('truetype'), url('../assets/fonts/evolution_true_type_font_by_paulw-webfont.svg#evolutionevolution') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
+  background: black;
+}
+
+.global-bg {
+  background-color: #ff5a60;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  margin: auto;
+}
+
+.global-bg.bg-black {
+  background-color: black;
+}
+
+.err-message {
+  position: relative;
+  color: white;
+  text-align: center;
+  top: 26px;
+  font-size: 20px;
+  color: #FF9139;
+}
+
+
+/* Utility Classes */
+
+.inline-block {
+  display: inline-block;
+}
+
+.push-up-17 {
+  bottom: 17px;
+}
+
+
+/* Landing Page Overlay, Fixed */
+
+.landing-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .8);
+  z-index: 2;
+  opacity: 0;
+  -webkit-transition: opacity 1.0s ease-in-out;
+  -moz-transition: opacity 1.0s ease-in-out;
+  -ms-transition: opacity 1.0s ease-in-out;
+  -o-transition: opacity 1.0s ease-in-out;
+  transition: opacity 1.0s ease-in-out;
+}
+
+.landing-overlay.add-opacity {
+  opacity: 1;
+}
+
+
+/* Background Image, Fixed */
+
+.background-img {
+  background: url(../assets/img/bg-image.jpg);
+  background-size: cover;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  -webkit-transition: opacity 1.0s ease-in-out;
+  -moz-transition: opacity 1.0s ease-in-out;
+  -ms-transition: opacity 1.0s ease-in-out;
+  -o-transition: opacity 1.0s ease-in-out;
+  transition: opacity 1.0s ease-in-out;
+}
+
+.background-img.add-opacity {
+  opacity: 1;
+}
+
+
+/* Center Body | Absolute Container */
+
+.center-body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 400px;
+  height: 278px;
+  margin: auto;
+  z-index: 3;
+}
+
+
+/* Center Body Child | Logo, Relative */
+
+.logo-top {
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 16px;
+  margin: auto;
+  width: 250px;
+  height: 29px;
+  color: #ff5a60;
+  font-family: 'evolutionevolution';
+  font-size: 32px;
+  text-align: center;
+}
+
+
+/* Center Body Child | Form, Relative */
+
+form {
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+}
+
+
+/* Form Child | Form Input:Focus, Style */
+
+input:focus {
+  outline: none;
+}
+
+
+/* Form Child | Form Content, Relative */
+
+.search-input,
+.search-input:hover,
+.search-input:active {
+  position: relative;
+  width: 300px;
+  height: 20px;
+  border: 2px solid white;
+  border-radius: 35px;
+  left: 0;
+  right: 0;
+  top: 30px;
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, .5);
+  color: rgba(0, 0, 0, .6);
+}
+
+
+/* Form Child | Form Submit Button, Relative */
+
+.submit-search-btn,
+.submit-search-btn:hover,
+.submit-search-btn:active {
+  position: relative;
+  width: 100px;
+  height: 20px;
+  border: 1px solid #ff5a60;
+  border-radius: 35px;
+  left: 0;
+  right: 0;
+  top: 30px;
+  margin: auto;
+  font-size: 18px;
+  padding: 10px;
+  color: rgba(0, 0, 0, .6);
+  cursor: pointer;
+}
+
+.submit-search-btn:active {
+  box-shadow: inset 0 0 0 1px #ff5a60, inset 0 2px 25px #ff5a60;
+}
+
+
+/* Search Button Child | Form Submit Button, Relative */
+
+.submit-search-btn > p {
+  color: white;
+  position: relative;
+  text-align: center;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+
+
+
+  .listings-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 90px;
+    height: 100%;
+    margin: auto;
+    z-index: 3;
+    text-align: center;
+  }
+  
+  .listing {
+    width: 400px;
+    height: 300px;
+    position: relative;
+    display: inline-block;
+    margin: 6px;
+    border: 1px solid white;
+  }
+  
+  .listing-img {
+    position: absolute;
+    left: 0;
+    margin: auto;
+    right: 0;
+    bottom: 0;
+    border: 1px solid white;
+    border-bottom: transparent;
+    width: 252px;
+    height: 186px;
+  }
+  
+  .listing-copy {
+    color: white;
+    font-size: 12px;
+    position: relative;
+  }
+  
+  .listing-copy.href {
+    font-size: 12px;
+    position: relative;
+    color: #5AFFF9;
+    bottom: 31px;
+    cursor: pointer;
+  }
+  
+  .title {
+    font-size: 14px;
+    color: #ff5a60;
+  }
+
+
+/* Mobile Portrait & Landscape  */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  .center-body {
+    width: 280px;
+  }
+  .search-input,
+  .search-input:hover,
+  .search-input:active,
+  .listing {
+    width: 230px;
+  }
+  .listing-img {
+    width: 200px;
+  }
+  .logo-top {
+    font-size: 24px;
+    top: 24px;
+  }
+  .nav-line {
+    width: 220px;
+    top: -51px;
+  }
+  .submit-search-btn.navbar,
+  .submit-search-btn.navbar:hover,
+  .submit-search-btn.navbar:active {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+  }
+}
+
+
+.navbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 0;
+  margin: auto;
+  width: 100%;
+  height: 50px;
+  z-index: 4;
+}
+
+.logo-top.navbar {
+  z-index: 2;
+  top: 50px;
+  width: 100%;
+}
+
+.submit-search-btn.navbar,
+.submit-search-btn.navbar:hover,
+.submit-search-btn.navbar:active {
+  position: relative;
+  width: 88px;
+  height: 20px;
+  border: 1px solid white;
+  border-radius: 35px;
+  left: 100px;
+  right: 0;
+  top: -47px;
+  margin: auto;
+  font-size: 18px;
+  padding: 5px;
+  color: rgba(0, 0, 0, .6);
+  cursor: pointer;
+}
+.submit-search-btn.navbar:active {
+  box-shadow: inset 0 0 0 1px #5AFFF9, inset 0 2px 15px #5AFFF9;
+}
+.submit-search-btn > p.navbar {
+  color: #5AFFF9;
+  position: absolute;
+  text-align: center;
+  top: 2px;
+  bottom: 0;
+  margin: auto;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  height: 18px;
+  font-weight: 300;
+}
+
+.navbar > div > p {
+  margin: auto;
+  top: -40px;
+  position: relative;
+}
+
+.nav-line {
+  background-color: white;
+  position: relative;
+  width: 310px;
+  height: 1px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: -54px;
+  opacity: .3;
+}

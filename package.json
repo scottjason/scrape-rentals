@@ -1,6 +1,7 @@
 {
   "name": "Scrape-Rentals",
-  "version": "0.0.0",
+  "author": "Scott-Jason",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "nodemon ./server/app.js"
@@ -19,5 +20,16 @@
     "request": "^2.60.0",
     "serve-favicon": "~2.2.0",
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-concurrent": "^2.0.0",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-cssmin": "^0.12.3",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-nodemon": "^0.4.0",
+    "load-grunt-tasks": "^3.2.0",
+    "time-grunt": "^1.2.1"
   }
 }
