@@ -385,9 +385,17 @@ input:focus {
 
 
   /* Desktop Media Queries  */
-
+  
   @media (min-device-width: 400px) {
     .listing {
       width: 350px;
+    }
+    .center-body {
+      width: 300px;
+    }
+    .search-input,
+    .search-input:hover,
+    .search-input:active {
+      width: 270px;
     }
   }
