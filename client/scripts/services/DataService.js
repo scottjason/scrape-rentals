@@ -60,7 +60,6 @@ angular.module('ScrapeRentals')
     }
 
     function generateListings(arr, cb) {
-      console.log('generateListings', arr);
       cb(arr);
     };
 

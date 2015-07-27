@@ -36,6 +36,14 @@
     position: relative;
   }
   
+  .listing-copy.href {
+    font-size: 12px;
+    position: relative;
+    color: #5AFFF9;
+    bottom: 31px;
+    cursor: pointer;
+  }
+  
   .title {
     font-size: 14px;
     color: #ff5a60;
