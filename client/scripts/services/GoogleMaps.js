@@ -1,5 +1,5 @@
 angular.module('ScrapeRentals')
-  .service('GoogleMaps', function($timeout, StateService) {
+  .service('GoogleMaps', function() {
 
     'use strict'
 
@@ -19,5 +19,4 @@ angular.module('ScrapeRentals')
     return ({
       addEventListener: addEventListener
     });
-    ng.$inject('$timeout');
   });

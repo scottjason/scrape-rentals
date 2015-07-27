@@ -8,10 +8,11 @@
     </div>
     <form>
       <input id="autocomplete" ng-model='searchForm' class='search-input' name='location' placeholder='search by city or state'>
-      <div ng-click='landingCtrl.onSubmit(null);' class='submit-search-btn'>
+      <div ng-hide='showLoader' ng-click='landingCtrl.onSubmit(null);' class='submit-search-btn'>
         <p>submit</p>
       </div>
     </form>
+      <i ng-show='showLoader' class="fa fa-circle-o-notch fa-spin" ></i>
     <p ng-show='showErrMessage' class='err-message'>no results found</p>
   </div>
   <div ng-show='showListings'>
@@ -26,7 +27,7 @@
     </div>
     <div class='listings-container'>
       <div class='listing' ng-repeat='listing in listings'>
-        <img class='listing-img' src="{{ listing.imageLink }}" alt="listing-image">
+          <img class='listing-img' src= "{{ listing.imageLink }}" alt="listing-image">
         <p class='listing-copy title'>{{listing.title}}</p>
         <p class='listing-copy'>{{listing.location}}</p>
         <p class='listing-copy inline-block push-up-17'>{{listing.size}} |</p>

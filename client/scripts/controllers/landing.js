@@ -5,10 +5,8 @@ angular.module('ScrapeRentals')
 
 function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataService, RequestApi, StateService) {
 
-  var autoComplete;
   var ctrl = this;
-
-  var stateMap = DataService.generateMap();
+  var autoComplete;
 
   this.initialize = function() {
     var isReload = StateService.data['SearchForm'].isReload;
@@ -35,6 +33,7 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
     if (!isReload) {
       var isValid = StateService.data['SearchForm'].isValid;
       if (isValid) {
+        $scope.showLoader = true;
         var requestOpts = StateService.data['SearchForm'].requestOpts;
         StateService.data['SearchForm'].isValid = false;
         StateService.data['SearchForm'].requestOpts = null;
@@ -53,31 +52,13 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
   };
 
   ctrl.onAutoComplete = function() {
-    var address = autoComplete.getPlace();
-    var obj = {};
-    var arr = (address.formatted_address).split(',');
-    arr.forEach(function(elem, index) {
-      if (index === 0) {
-        obj.city = elem.trim();
-      } else if (index === 1) {
-        obj.state = elem.trim();
-      }
+    var opts = {};
+    opts.type = 'request-opts';
+    opts.address = autoComplete.getPlace();
+    DataService.generateOpts(opts, function(requestOpts) {
+      StateService.data['SearchForm'].isValid = true;
+      StateService.data['SearchForm'].requestOpts = requestOpts;
     });
-    obj.url = 'http://www.rentals.com/';
-    var arr = obj.city.split(' ');
-    if (arr.length > 1) {
-      obj.city = '';
-      arr.forEach(function(elem, index) {
-        if (index !== arr.length - 1) {
-          obj.city += (elem + '-');
-        } else {
-          obj.city += elem;
-        }
-      });
-    }
-    obj.url += stateMap[obj.state] + '/' + obj.city + '/'
-    StateService.data['SearchForm'].isValid = true;
-    StateService.data['SearchForm'].requestOpts = obj;
   };
 
   ctrl.makeRequest = function(requestOpts) {
@@ -86,12 +67,14 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
         if (typeof response.data === 'object' && Array.isArray(response.data)) {
           if (response.data.length) {
             $timeout(function() {
+              $scope.showLoader = false;
               $scope.searchForm = '';
               $scope.listings = response.data;
               $scope.showListings = true;
             });
           } else {
             $timeout(function() {
+              $scope.showLoader = false;
               $scope.searchForm = '';
               $scope.showErrMessage = true;
               $timeout(function() {
