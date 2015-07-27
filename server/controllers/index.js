@@ -66,6 +66,7 @@ exports.scrape = function(req, res, next) {
     },
     function(err, results) {
       if (err) return next (err);
+      console.log('results', results);
       res.status(200).send({ rentals: results.rentals, apartments: results.apartments })
     });
 };
