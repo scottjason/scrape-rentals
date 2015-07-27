@@ -76,7 +76,7 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
       });
     }
     obj.rentalsUrl += stateMap[obj.state] + '/' + obj.city + '/'
-    obj.apartmentsUrl = 'http://www.apartments.com/' + (obj.city).toLowerCase() + '-' + (obj.state).toLowerCase();
+    obj.apartmentsUrl = 'http://apartments.com/' + (obj.city).toLowerCase() + '-' + (obj.state).toLowerCase();
     StateService.data['SearchForm'].isValid = true;
     StateService.data['SearchForm'].requestOpts = obj;
   };
