@@ -10,9 +10,9 @@ exports.render = function(req, res, next) {
 
 exports.scrape = function(req, res, next) {
 
-  async.parallel({
-      rentals: function(callback) {
-        var results = [];
+  async.waterfall([
+      function(callback) {
+        var rentals = [];
         var opts = {
           normalizeWhitespace: true,
           xmlMode: false
@@ -32,20 +32,18 @@ exports.scrape = function(req, res, next) {
             listing.size = $(obj).children('.listing_details').children().find('p.listing_size').text();
             listing.size = listing.size.slice(1);
             listing.phone = $(obj).children('.listing_details').children().find('a.listing_phone').text();
-            results.push(listing);
+            rentals.push(listing);
           });
-          callback(null, results);
+          callback(null, rentals);
         });
       },
-      apartments: function(callback) {
-        var results = [];
+      function(rentals, callback) {
+        var apartments = [];
         var opts = {
           normalizeWhitespace: true,
           xmlMode: false
         };
         request(req.body.apartmentsUrl, function(err, response, html) {
-          console.log('err', err)
-          console.log('response', response);
           if (err) return callback(err);
           var $ = cheerio.load(html, opts);
           var container = $('#placardContainer').children('article');
@@ -61,15 +59,18 @@ exports.scrape = function(req, res, next) {
             listing.price = $(obj).children('.placardContent').children('div.propertyInfo').children('div.apartmentRentRollupContainer').find('p.altRentDisplay').text();
             listing.size = $(obj).children('.placardContent').children('div.propertyInfo').children('div.apartmentRentRollupContainer').find('p.unitLabel').text();
             console.log('#### listing', listing);
-            results.push(listing);
+            apartments.push(listing);
           });
-          callback(null, results);
+          callback(null, rentals, apartments);
         });
-      }
-    },
-    function(err, results) {
-      if (err) return next (err);
-      console.log('results', results);
-      res.status(200).send({ rentals: results.rentals, apartments: results.apartments })
-    });
+      },
+    ],
+    function(err, rentals, apartments) {
+      if (err) return next(err);
+      res.status(200).send({
+        rentals: rentals,
+        apartments: apartments
+      })
+    }
+  )
 };
