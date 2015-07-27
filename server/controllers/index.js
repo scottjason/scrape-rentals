@@ -60,7 +60,7 @@ exports.scrape = function(req, res, next) {
             listing.location = listing.location.replace(/(\r\n|\n|\r)/gm, "");
             listing.price = $(obj).children('.placardContent').children('div.propertyInfo').children('div.apartmentRentRollupContainer').find('p.altRentDisplay').text();
             listing.size = $(obj).children('.placardContent').children('div.propertyInfo').children('div.apartmentRentRollupContainer').find('p.unitLabel').text();
-            console.log('#### listing' listing);
+            console.log('#### listing', listing);
             results.push(listing);
           });
           callback(null, results);
