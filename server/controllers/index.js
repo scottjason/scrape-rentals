@@ -25,7 +25,8 @@ exports.scrape = function(req, res, next) {
         listing.title = $(obj).children('.column1').find('a').attr('title');
         listing.title = (listing.title.length > 28) ? listing.title.slice(0, 25) + '...' : listing.title;
         listing.href = 'http://www.rentals.com' + $(obj).children('.column1').find('a').attr('href');
-        listing.imageLink = $(obj).children('.column1').children('.listing_photo').find('img').attr('data-original');
+        var imageLink = $(obj).children('.column1').children('.listing_photo').find('img').attr('data-original');
+        listing.imageLink = (process.env.NODE_ENV === 'production') ? imageLink.slice(0, 4) + 's' + imageLink.slice(5) : imageLink;
         listing.location = $(obj).children('.listing_details').children().find('h5').text();
         listing.price = $(obj).children('.listing_details').children().find('p.listing_price').text();
         listing.size = $(obj).children('.listing_details').children().find('p.listing_size').text();
