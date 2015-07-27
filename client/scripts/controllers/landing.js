@@ -63,7 +63,6 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
 
   ctrl.makeRequest = function(requestOpts) {
     RequestApi.getAll(requestOpts).then(function(response) {
-        console.log(response);
         if (typeof response.data === 'object' && Array.isArray(response.data)) {
           if (response.data.length) {
             $timeout(function() {
