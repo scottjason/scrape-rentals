@@ -63,47 +63,42 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
         obj.state = elem.trim();
       }
     });
-    obj.rentalsUrl = 'http://www.rentals.com/';
+    obj.url = 'http://www.rentals.com/';
     var arr = obj.city.split(' ');
     if (arr.length > 1) {
       obj.city = '';
-      obj.truiliaCity = '';
       arr.forEach(function(elem, index) {
         if (index !== arr.length - 1) {
-          console.log(elem);
           obj.city += (elem + '-');
-          obj.truiliaCity += (elem + '_');
         } else {
-          console.log(elem);
           obj.city += elem;
-          obj.truiliaCity += elem;
         }
       });
     }
-    obj.rentalsUrl += stateMap[obj.state] + '/' + obj.city + '/'
-    obj.truiliaCity = obj.truiliaCity ? obj.truiliaCity : obj.city;
-    obj.truliaUrl = 'http://www.trulia.com/for_rent/' + obj.truiliaCity + ',' + obj.state;
+    obj.url += stateMap[obj.state] + '/' + obj.city + '/'
     StateService.data['SearchForm'].isValid = true;
     StateService.data['SearchForm'].requestOpts = obj;
   };
 
   ctrl.makeRequest = function(requestOpts) {
     RequestApi.getAll(requestOpts).then(function(response) {
-        if (typeof response.data.rentals === 'object' && Array.isArray(response.data.rentals) && typeof response.data.apartments === 'object' && Array.isArray(response.data.apartments)) {
-          console.log(response)
-          if (response.data.rentals.length) {
-            var listings = response.data.rentals;
-          }
-          if (response.data.apartments.length && listings) {
-            (response.data.apartments).forEach(function(obj) {
-              listings.push(obj);
+        console.log(response);
+        if (typeof response.data === 'object' && Array.isArray(response.data)) {
+          if (response.data.length) {
+            $timeout(function() {
+              $scope.searchForm = '';
+              $scope.listings = response.data;
+              $scope.showListings = true;
             });
+          } else {
+            $timeout(function() {
+              $scope.searchForm = '';
+              $scope.showErrMessage = true;
+              $timeout(function() {
+                $scope.showErrMessage = false;
+              }, 1400)
+            })
           }
-          $scope.searchForm = '';
-          $scope.listings = listings;
-          $scope.showListings = true;
-        } else {
-          console.log('no results found');
         }
       },
       function(err) {

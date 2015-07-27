@@ -26,6 +26,15 @@ body {
   background-color: black;
 }
 
+.err-message {
+  position: relative;
+  color: white;
+  text-align: center;
+  top: 26px;
+  font-size: 20px;
+  color: #FF9139;
+}
+
 
 /* Utility Classes */
 

@@ -33,7 +33,9 @@
   color: rgba(0, 0, 0, .6);
   cursor: pointer;
 }
-
+.submit-search-btn.navbar:active {
+  box-shadow: inset 0 0 0 1px #5AFFF9, inset 0 2px 15px #5AFFF9;
+}
 .submit-search-btn > p.navbar {
   color: #5AFFF9;
   position: absolute;
