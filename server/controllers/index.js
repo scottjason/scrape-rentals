@@ -13,9 +13,13 @@ exports.scrape = function(req, res, next) {
   async.parallel({
       rentals: function(callback) {
         var results = [];
+        var opts = {
+          normalizeWhitespace: true,
+          xmlMode: false
+        };
         request(req.body.rentalsUrl, function(err, response, html) {
           if (err) return callback(err);
-          var $ = cheerio.load(html);
+          var $ = cheerio.load(html, opts);
           var container = $('#search_results').children('.result');
           _.each(container, function(obj) {
             var listing = {};
@@ -37,26 +41,31 @@ exports.scrape = function(req, res, next) {
         var results = [];
         var opts = {
           normalizeWhitespace: true,
-          xmlMode: true
+          xmlMode: false
         };
         request(req.body.apartmentsUrl, function(err, response, html) {
-          var $ = cheerio.load(html, opts );
+          if (err) return callback(err);
+          var $ = cheerio.load(html, opts);
           var container = $('#placardContainer').children('article');
           _.each(container, function(obj) {
             var listing = {};
             listing.title = $(obj).find('a').attr('title');
             listing.title = (listing.title.length > 28) ? listing.title.slice(0, 25) + '...' : listing.title;
             listing.href = $(obj).find('a').attr('href');
-            listing.imageLink = $(obj).children('.placardContent').children('div.media').children('div.imageContainer').children('.carouselInner').children('div.item').find("meta").attr("content");
+            listing.imageLink = $(obj).children('.placardContent').children('div.media').children('div.imageContainer').children('.carouselInner').children('div.item').find('meta').attr('content');
+            listing.location = $(obj).children('.placardContent').children('div.propertyInfo').children('div.location').children('.cityState').children('.city').attr('title');
+            listing.location = (listing.location.indexOf('&#39') !== 1) ? listing.location.replace("&#39;", "") : listing.location;
+            listing.location = listing.location.replace(/(\r\n|\n|\r)/gm, "");
+            listing.price = $(obj).children('.placardContent').children('div.propertyInfo').children('div.apartmentRentRollupContainer').find('p.altRentDisplay').text();
+            listing.size = $(obj).children('.placardContent').children('div.propertyInfo').children('div.apartmentRentRollupContainer').find('p.unitLabel').text();
             results.push(listing);
-            console.log(util.inspect(listing, depth = 5));
           });
+          callback(null, results);
         });
-        // callback(null);
       }
     },
     function(err, results) {
-      console.log("### RENTAL RESULTS", results.rentals);
-      console.log("### APARTMENTS RESULTS", results.apartments);
+      if (err) return next (err);
+      res.status(200).send({ rentals: results.rentals, apartments: results.apartments })
     });
 };
