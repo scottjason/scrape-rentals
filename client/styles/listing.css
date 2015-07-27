@@ -28,6 +28,8 @@
     bottom: 0;
     border: 1px solid white;
     border-bottom: transparent;
+    width: 252px;
+    height: 186px;
   }
   
   .listing-copy {

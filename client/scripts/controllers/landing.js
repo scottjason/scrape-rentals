@@ -83,18 +83,20 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
 
   ctrl.makeRequest = function(requestOpts) {
     RequestApi.getAll(requestOpts).then(function(response) {
-      if (typeof response.data === 'object' && Array.isArray(response.data)) {
-        DataService.generateListings(response.data, function(listings) {
-          $scope.searchForm = '';
-          $scope.listings = listings;
-          $scope.showListings = true;
-          console.log('listings', listings);
+        if (typeof response.data.rentals === 'object' && Array.isArray(response.data.rentals) && typeof response.data.apartments === 'object' && Array.isArray(response.data.apartments)) {
+            var listings = response.data.rentals;
+            (response.data.apartments).forEach(function(obj){
+              listings.push(obj);
+            })
+            $scope.searchForm = '';
+            $scope.listings = listings;
+            $scope.showListings = true;
+          };
+        },
+        function(err) {
+          console.err('err', err);
         });
-      };
-    }, function(err) {
-      console.err('err', err);
-    });
-  };
+    };
 
-  LandingCtrl.$inject['$scope', '$rootScope', '$state', '$timeout', 'GoogleMaps', 'DataService', 'RequestApi', 'StateService'];
-}
+    LandingCtrl.$inject['$scope', '$rootScope', '$state', '$timeout', 'GoogleMaps', 'DataService', 'RequestApi', 'StateService'];
+  }
