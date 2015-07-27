@@ -48,7 +48,7 @@ exports.scrape = function(req, res, next) {
           xmlMode: false
         };
         request(req.body.truliaUrl, function(err, response, html) {
-          console.log(response.statusCode);
+          console.log("trulia res", response.statusCode);
           if (err) return callback(err);
           if (response.statusCode === 200) {
             var $ = cheerio.load(html, opts);
