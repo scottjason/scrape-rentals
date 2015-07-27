@@ -1,5 +1,5 @@
 #### Scrape Rentals
-Authored By: Scott Jason<br>
+Scott Jason<br>
 July 2015
 
 Scrape Rentals is a mobile-first, fully-responsive web application that scrapes, cleans and renders rental listings in the US.
