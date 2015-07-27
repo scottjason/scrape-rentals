@@ -38,12 +38,15 @@ exports.scrape = function(req, res, next) {
         });
       },
       function(rentals, callback) {
+        console.log("Making apartments request with url", req.body.apartmentsUrl)
         var apartments = [];
         var opts = {
           normalizeWhitespace: true,
           xmlMode: false
         };
         request(req.body.apartmentsUrl, function(err, response, html) {
+          console.log('err', err);
+          console.log('response', response.statusCode)
           if (err) return callback(err);
           var $ = cheerio.load(html, opts);
           var container = $('#placardContainer').children('article');
