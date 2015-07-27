@@ -42,42 +42,44 @@ exports.scrape = function(req, res, next) {
         });
       },
       function(rentals, callback) {
-        var apartments = [];
+        var trulia = [];
         var opts = {
           normalizeWhitespace: true,
           xmlMode: false
         };
-        request(req.body.apartmentsUrl, function(err, response, html) {
+        request(req.body.truliaUrl, function(err, response, html) {
+          console.log(response.statusCode);
           if (err) return callback(err);
           if (response.statusCode === 200) {
             var $ = cheerio.load(html, opts);
-            var container = $('#placardContainer').children('article');
+            var container = $('#listView').children();
             _.each(container, function(obj) {
+              console.log('trulia obj', obj);
               var listing = {};
-              listing.title = $(obj).find('a').attr('title');
-              listing.title = (listing.title.length > 28) ? listing.title.slice(0, 25) + '...' : listing.title;
-              listing.href = $(obj).find('a').attr('href');
-              listing.imageLink = $(obj).children('.placardContent').children('div.media').children('div.imageContainer').children('.carouselInner').children('div.item').find('meta').attr('content');
-              listing.location = $(obj).children('.placardContent').children('div.propertyInfo').children('div.location').children('.cityState').children('.city').attr('title');
-              listing.location = (listing.location.indexOf('&#39') !== 1) ? listing.location.replace("&#39;", "") : listing.location;
-              listing.location = listing.location.replace(/(\r\n|\n|\r)/gm, "");
-              listing.price = $(obj).children('.placardContent').children('div.propertyInfo').children('div.apartmentRentRollupContainer').find('p.altRentDisplay').text();
-              listing.size = $(obj).children('.placardContent').children('div.propertyInfo').children('div.apartmentRentRollupContainer').find('p.unitLabel').text();
-              console.log('#### listing', listing);
-              apartments.push(listing);
+              // listing.title = $(obj).find('a').attr('title');
+              // listing.title = (listing.title.length > 28) ? listing.title.slice(0, 25) + '...' : listing.title;
+              // listing.href = $(obj).find('a').attr('href');
+              // listing.imageLink = $(obj).children('.placardContent').children('div.media').children('div.imageContainer').children('.carouselInner').children('div.item').find('meta').attr('content');
+              // listing.location = $(obj).children('.placardContent').children('div.propertyInfo').children('div.location').children('.cityState').children('.city').attr('title');
+              // listing.location = (listing.location.indexOf('&#39') !== 1) ? listing.location.replace("&#39;", "") : listing.location;
+              // listing.location = listing.location.replace(/(\r\n|\n|\r)/gm, "");
+              // listing.price = $(obj).children('.placardContent').children('div.propertyInfo').children('div.apartmentRentRollupContainer').find('p.altRentDisplay').text();
+              // listing.size = $(obj).children('.placardContent').children('div.propertyInfo').children('div.apartmentRentRollupContainer').find('p.unitLabel').text();
+              // console.log('#### listing', listing);
+              // trulia.push(listing);
             });
-            callback(null, rentals, apartments);
+            callback(null, rentals, trulia);
           } else {
-            callback(null, rentals, apartments);
+            callback(null, rentals, trulia);
           }
         });
       },
     ],
-    function(err, rentals, apartments) {
+    function(err, rentals, trulia) {
       if (err) return next(err);
       res.status(200).send({
         rentals: rentals,
-        apartments: apartments
+        trulia: trulia
       })
     }
   )

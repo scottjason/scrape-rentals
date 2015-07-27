@@ -67,16 +67,22 @@ function LandingCtrl($scope, $rootScope, $state, $timeout, GoogleMaps, DataServi
     var arr = obj.city.split(' ');
     if (arr.length > 1) {
       obj.city = '';
+      obj.truiliaCity = '';
       arr.forEach(function(elem, index) {
         if (index !== arr.length - 1) {
+          console.log(elem);
           obj.city += (elem + '-');
+          obj.truiliaCity += (elem + '_');
         } else {
+          console.log(elem);
           obj.city += elem;
+          obj.truiliaCity += elem;
         }
       });
     }
     obj.rentalsUrl += stateMap[obj.state] + '/' + obj.city + '/'
-    obj.apartmentsUrl = 'http://www.apartments.com/' + (obj.city).toLowerCase() + '-' + (obj.state).toLowerCase();
+    obj.truiliaCity = obj.truiliaCity ? obj.truiliaCity : obj.city;
+    obj.truliaUrl = 'http://www.trulia.com/for_rent/' + obj.truiliaCity + ',' + obj.state;
     StateService.data['SearchForm'].isValid = true;
     StateService.data['SearchForm'].requestOpts = obj;
   };
