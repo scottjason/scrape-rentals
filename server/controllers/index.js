@@ -44,6 +44,8 @@ exports.scrape = function(req, res, next) {
           xmlMode: false
         };
         request(req.body.apartmentsUrl, function(err, response, html) {
+          console.log('err', err)
+          console.log('response', response);
           if (err) return callback(err);
           var $ = cheerio.load(html, opts);
           var container = $('#placardContainer').children('article');
@@ -58,6 +60,7 @@ exports.scrape = function(req, res, next) {
             listing.location = listing.location.replace(/(\r\n|\n|\r)/gm, "");
             listing.price = $(obj).children('.placardContent').children('div.propertyInfo').children('div.apartmentRentRollupContainer').find('p.altRentDisplay').text();
             listing.size = $(obj).children('.placardContent').children('div.propertyInfo').children('div.apartmentRentRollupContainer').find('p.unitLabel').text();
+            console.log('#### listing' listing);
             results.push(listing);
           });
           callback(null, results);
