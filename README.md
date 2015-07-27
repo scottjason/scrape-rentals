@@ -1,6 +1,5 @@
 #### Scrape Rentals
-Scott Jason<br>
-July 2015
+Scott Jason | July 2015
 
 Scrape Rentals is a mobile-first, fully-responsive web application that scrapes, cleans and renders rental listings in the US.
 
@@ -8,4 +7,4 @@ Scrape Rentals is a mobile-first, fully-responsive web application that scrapes,
 - Compiled with Grunt and deployed to Heroku.
 - Compatible with Mobile, Tablet & Desktop.
 
-[Visit Site](https://scrape-rentals.herokuapp.com/)
+<a href="https://scrape-rentals.herokuapp.com/" target="_blank">Visit Site</a>
