@@ -3,6 +3,10 @@
 angular.module('ScrapeRentals')
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
+    window.console.warn = function() {
+      return false;
+    }
+
 
     $stateProvider
       .state('landing', {
