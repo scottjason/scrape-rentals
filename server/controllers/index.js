@@ -19,6 +19,7 @@ exports.scrape = function(req, res, next) {
         };
         request(req.body.rentalsUrl, function(err, response, html) {
           if (err) return callback(err);
+          if (response.statusCode === 200) {
             var $ = cheerio.load(html, opts);
             var container = $('#search_results').children('.result');
             _.each(container, function(obj) {
